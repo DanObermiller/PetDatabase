@@ -10,14 +10,13 @@ import java.util.Scanner;
 
 /**
  *
- * @author charr
+ * Dan Obermiller
+ * 1/16/2026
  */
 public class ObermillerWeek1AssignmentFriday {
 
-    
-    static int CAPACITY = 100;
     //Stores pet objects
-    static ArrayList<Pet> pets = new ArrayList<Pet>(CAPACITY);
+    static ArrayList<Pet> pets = new ArrayList<Pet>();
     static int petCount = 0;
     Scanner s = new Scanner(System.in);
     
@@ -38,21 +37,6 @@ public class ObermillerWeek1AssignmentFriday {
             {
                 addPets();
             }
-            //Removes a pet from index
-            else if (choice == 3)
-            {
-                removePet();
-            }
-            //Searches and prints pets based on age
-            else if (choice == 4)
-            {
-                searchPetsByAge();
-            }
-            //Searches and prints pets based on name
-            else if (choice == 5)
-            {
-                searchPetsByName();
-            }
         }
     }
     
@@ -72,27 +56,6 @@ public class ObermillerWeek1AssignmentFriday {
         
     }
     
-    private static void addPets()
-    {
-        Scanner scnr = new Scanner(System.in);
-        String line;
-        String parsed[];
-        int numAdded = 0;
-        //Get user input for name and age
-        System.out.print("add pet (name, age): ");
-        line = scnr.nextLine();
-        //Keep adding pets until done is entered
-        while (!line.equals("done"))
-        {
-            parsed = parseArgument(line);
-            addPet(parsed[0], Integer.parseInt(parsed[1]));
-            numAdded += 1;
-            System.out.print("add pet (name, age): ");
-            line = scnr.nextLine();
-        }
-        System.out.println("" + numAdded + " pets added.");
-    }
-    
     private static void showAllPets()
     {
         //Displays every pet stored in ArrayList
@@ -102,59 +65,6 @@ public class ObermillerWeek1AssignmentFriday {
         {
             printTableRow(i, pets.get(i).getName(), pets.get(i).getAge());
             rowCount += 1;
-        }
-        printTableFooter(rowCount);
-    }
-    
-    private static void removePet()
-    {
-        Scanner scnr = new Scanner(System.in);
-        int id;
-        showAllPets();
-        System.out.print("Enter the Pet ID to remove: ");
-        id = scnr.nextInt();
-        //Remove pet from ArrayList
-            System.out.println("" + pets.get(id).getName() + " has been removed.");
-            pets.remove(id);
-            petCount -= 1;
-    }
-    
-    private static void searchPetsByAge()
-    {
-        Scanner scnr = new Scanner(System.in);
-        int age;
-        int rowCount = 0;
-        System.out.print("Enter an age to search: ");
-        age = scnr.nextInt();
-        printTableHeader();
-        //Search for pets with specified age
-        for (int i = 0; i < petCount; i++)
-        {
-            if (pets.get(i).getAge() == age)
-            {
-                printTableRow(i, pets.get(i).getName(), pets.get(i).getAge());
-                rowCount += 1;
-            }
-        }
-        printTableFooter(rowCount);
-    }
-    
-    private static void searchPetsByName()
-    {
-        Scanner scnr = new Scanner(System.in);
-        String name;
-        int rowCount = 0;
-        System.out.print("Enter a name to search: ");
-        name = scnr.next();
-        printTableHeader();
-        //Search for pets with specified name
-        for (int i = 0; i < petCount; i++)
-        {
-            if (pets.get(i).getName().equals(name))
-            {
-                printTableRow(i, pets.get(i).getName(), pets.get(i).getAge());
-                rowCount += 1;
-            }
         }
         printTableFooter(rowCount);
     }
@@ -190,9 +100,6 @@ public class ObermillerWeek1AssignmentFriday {
         System.out.println("What would you like to do?");
         System.out.println(" 1) View all pets");
         System.out.println(" 2) Add new pets");
-        System.out.println(" 3) Remove a pet");
-        System.out.println(" 4) Search by age");
-        System.out.println(" 5) Search by name");
         System.out.println(" 6) Exit program");
         System.out.print("Your choice: ");
         
