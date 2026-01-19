@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  */
 
-package com.mycompany.testing;
+package com.mycompany.ObermillerWeek1AssignmentSaturday;
 
 import java.util.ArrayList;
 import java.util.Scanner;
