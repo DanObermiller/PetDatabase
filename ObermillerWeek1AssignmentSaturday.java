@@ -2,53 +2,58 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  */
 
-package com.mycompany.obermillerweek1assignmentfriday;
+package com.mycompany.testing;
 
-import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
- *
- * @author charr
+ *Pet Database Program
+ *I certify, that this computer program submitted by me is all of my own work. Signed: Dan Obermiller
+ * 1/17/2026
  */
-public class ObermillerWeek1AssignmentFriday {
+public class ObermillerWeek1AssignmentSaturday {
 
-    
-    //Stores pet objects
+       
+    //ArrayList for Pets
     static ArrayList<Pet> pets = new ArrayList<Pet>();
     static int petCount = 0;
     Scanner s = new Scanner(System.in);
     
     public static void main(String[] args) {
         int choice = 0;
-        System.out.println("Pet Database Program");
-        //Loops based on user input
-        while (choice != 6)
+        System.out.println("Pet Database Program.");
+        //Get user input
+        while (choice != 7)
         {
             choice = getUserChoice();
-            //Shows all pets
+            //Display all pets
             if (choice == 1)
             {
                 showAllPets();
             }
-            //Adds as many pets as user wants
+            //Add pets
             else if (choice == 2)
             {
                 addPets();
             }
-            //Removes a pet from index
+            //Updates a pet
             else if (choice == 3)
             {
-                removePet();
+                System.out.println("Will be implemented in future version.");
             }
-            //Searches and prints pets based on age
+            //Removes a pet
             else if (choice == 4)
+            {
+                System.out.println("Will be implemented in future version.");
+            }
+            //Search pet by age
+            else if (choice == 5)
             {
                 searchPetsByAge();
             }
-            //Searches and prints pets based on name
-            else if (choice == 5)
+            //Search pet by name
+            else if (choice == 6)
             {
                 searchPetsByName();
             }
@@ -57,7 +62,7 @@ public class ObermillerWeek1AssignmentFriday {
     
     private static String[] parseArgument(String ln)
     {
-        //Splits line into a String and integer
+        //Split user input
         String parsed[] = ln.split(" ");
         return parsed;
     }
@@ -77,10 +82,10 @@ public class ObermillerWeek1AssignmentFriday {
         String line;
         String parsed[];
         int numAdded = 0;
-        //Get user input for name and age
+        //Get name and age
         System.out.print("add pet (name, age): ");
         line = scnr.nextLine();
-        //Keep adding pets until done is entered
+        //Unless done, prompt for new pet
         while (!line.equals("done"))
         {
             parsed = parseArgument(line);
@@ -92,45 +97,35 @@ public class ObermillerWeek1AssignmentFriday {
         System.out.println("" + numAdded + " pets added.");
     }
     
-    private static void showAllPets()
-    {
-        //Displays every pet stored in ArrayList
-        int rowCount = 0;
-        printTableHeader();
-        for (int i = 0; i < petCount; i++)
-        {
-            printTableRow(i, pets.get(i).getName(), pets.get(i).getAge());
-            rowCount += 1;
-        }
-        printTableFooter(rowCount);
-    }
-    
-    private static void removePet()
-    {
-        Scanner scnr = new Scanner(System.in);
-        int id;
-        showAllPets();
-        System.out.print("Enter the Pet ID to remove: ");
-        id = scnr.nextInt();
-        //Remove pet from ArrayList
-            System.out.println("" + pets.get(id).getName() + " has been removed.");
-            pets.remove(id);
-            petCount -= 1;
-    }
-    
-    private static void searchPetsByAge()
-    {
+    private static void searchPetsByAge() {
         Scanner scnr = new Scanner(System.in);
         int age;
         int rowCount = 0;
         System.out.print("Enter an age to search: ");
+        //Get age user input
         age = scnr.nextInt();
         printTableHeader();
-        //Search for pets with specified age
-        for (int i = 0; i < petCount; i++)
-        {
-            if (pets.get(i).getAge() == age)
-            {
+        //Search for age in arraylist
+        for (int i = 0; i < petCount; i++) {
+            if (pets.get(i).getAge() == age) {
+                printTableRow(i, pets.get(i).getName(), pets.get(i).getAge());
+                rowCount += 1;
+            }
+        }
+        printTableFooter(rowCount);
+    }
+
+    private static void searchPetsByName() {
+        Scanner scnr = new Scanner(System.in);
+        String name;
+        int rowCount = 0;
+        System.out.print("Enter a name to search: ");
+        //Get name user input
+        name = scnr.next();
+        printTableHeader();
+        //Search for name in Arraylist
+        for (int i = 0; i < petCount; i++) {
+            if (pets.get(i).getName().equals(name)) {
                 printTableRow(i, pets.get(i).getName(), pets.get(i).getAge());
                 rowCount += 1;
             }
@@ -138,22 +133,16 @@ public class ObermillerWeek1AssignmentFriday {
         printTableFooter(rowCount);
     }
     
-    private static void searchPetsByName()
+    private static void showAllPets()
     {
-        Scanner scnr = new Scanner(System.in);
-        String name;
+        //Displays all pets
         int rowCount = 0;
-        System.out.print("Enter a name to search: ");
-        name = scnr.next();
         printTableHeader();
-        //Search for pets with specified name
+        //Loop through pet arraylist
         for (int i = 0; i < petCount; i++)
         {
-            if (pets.get(i).getName().equals(name))
-            {
-                printTableRow(i, pets.get(i).getName(), pets.get(i).getAge());
-                rowCount += 1;
-            }
+            printTableRow(i, pets.get(i).getName(), pets.get(i).getAge());
+            rowCount += 1;
         }
         printTableFooter(rowCount);
     }
@@ -168,7 +157,7 @@ public class ObermillerWeek1AssignmentFriday {
     
     private static void printTableRow(int id, String name, int age)
     {
-        //Prints a single row
+        //Prints a table row
         System.out.printf("|%3d", id);
         System.out.printf(" | %-10s", name);
         System.out.printf("|%4d |\n", age);
@@ -188,11 +177,12 @@ public class ObermillerWeek1AssignmentFriday {
         //Display choices for user
         System.out.println("What would you like to do?");
         System.out.println(" 1) View all pets");
-        System.out.println(" 2) Add new pets");
-        System.out.println(" 3) Remove a pet");
-        System.out.println(" 4) Search by age");
-        System.out.println(" 5) Search by name");
-        System.out.println(" 6) Exit program");
+        System.out.println(" 2) Add more pets");
+        System.out.println(" 3) Update an existing pet");
+        System.out.println(" 4) Remove an existing pet");
+        System.out.println(" 5) Search pets by age");
+        System.out.println(" 6) Search pets by name");
+        System.out.println(" 7) Exit program");
         System.out.print("Your choice: ");
         
         choice = scnr.nextInt();
@@ -211,6 +201,7 @@ class Pet {
         age = a;
     }
     
+    //Getter and setter methods
     public String getName()
     {
         return name;
