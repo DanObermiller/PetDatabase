@@ -24,7 +24,7 @@ public class ObermillerWeek1AssignmentFriday {
         int choice = 0;
         System.out.println("Pet Database Program.");
         //Get user input
-        while (choice != 6)
+        while (choice != 7)
         {
             choice = getUserChoice();
             //Display all pets
@@ -37,18 +37,23 @@ public class ObermillerWeek1AssignmentFriday {
             {
                 addPets();
             }
-            //Removes a pet
+            //Updates a pet
             else if (choice == 3)
             {
                 System.out.println("Will be implemented in future version.");
             }
-            //Search pet by age
+            //Removes a pet
             else if (choice == 4)
             {
                 System.out.println("Will be implemented in future version.");
             }
-            //Search pet by name
+            //Search pet by age
             else if (choice == 5)
+            {
+                System.out.println("Will be implemented in future version.");
+            }
+            //Search pet by name
+            else if (choice == 6)
             {
                 System.out.println("Will be implemented in future version.");
             }
@@ -136,11 +141,12 @@ public class ObermillerWeek1AssignmentFriday {
         //Display choices for user
         System.out.println("What would you like to do?");
         System.out.println(" 1) View all pets");
-        System.out.println(" 2) Add new pets");
-        System.out.println(" 3) Remove a pet");
-        System.out.println(" 4) Search by age");
-        System.out.println(" 5) Search by name");
-        System.out.println(" 6) Exit program");
+        System.out.println(" 2) Add more pets");
+        System.out.println(" 3) Update an existing pet");
+        System.out.println(" 4) Remove an existing pet");
+        System.out.println(" 5) Search pets by age");
+        System.out.println(" 6) Search pets by name");
+        System.out.println(" 7) Exit program");
         System.out.print("Your choice: ");
         
         choice = scnr.nextInt();
