@@ -2,47 +2,62 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  */
 
-package com.mycompany.obermillerweek1assignmentfriday;
+package com.mycompany.testing;
 
-import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
- *
- * Dan Obermiller
+ *Pet Database Program
+ *I certify, that this computer program submitted by me is all of my own work. Signed: Dan Obermiller
  * 1/16/2026
  */
 public class ObermillerWeek1AssignmentFriday {
 
-    //Stores pet objects
+       
+    //ArrayList for Pets
     static ArrayList<Pet> pets = new ArrayList<Pet>();
     static int petCount = 0;
     Scanner s = new Scanner(System.in);
     
     public static void main(String[] args) {
         int choice = 0;
-        System.out.println("Pet Database Program");
-        //Loops based on user input
+        System.out.println("Pet Database Program.");
+        //Get user input
         while (choice != 6)
         {
             choice = getUserChoice();
-            //Shows all pets
+            //Display all pets
             if (choice == 1)
             {
                 showAllPets();
             }
-            //Adds as many pets as user wants
+            //Add pets
             else if (choice == 2)
             {
                 addPets();
+            }
+            //Removes a pet
+            else if (choice == 3)
+            {
+                System.out.println("Will be implemented in future version.");
+            }
+            //Search pet by age
+            else if (choice == 4)
+            {
+                System.out.println("Will be implemented in future version.");
+            }
+            //Search pet by name
+            else if (choice == 5)
+            {
+                System.out.println("Will be implemented in future version.");
             }
         }
     }
     
     private static String[] parseArgument(String ln)
     {
-        //Splits line into a String and integer
+        //Split user input
         String parsed[] = ln.split(" ");
         return parsed;
     }
@@ -56,11 +71,33 @@ public class ObermillerWeek1AssignmentFriday {
         
     }
     
+    private static void addPets()
+    {
+        Scanner scnr = new Scanner(System.in);
+        String line;
+        String parsed[];
+        int numAdded = 0;
+        //Get name and age
+        System.out.print("add pet (name, age): ");
+        line = scnr.nextLine();
+        //Unless done, prompt for new pet
+        while (!line.equals("done"))
+        {
+            parsed = parseArgument(line);
+            addPet(parsed[0], Integer.parseInt(parsed[1]));
+            numAdded += 1;
+            System.out.print("add pet (name, age): ");
+            line = scnr.nextLine();
+        }
+        System.out.println("" + numAdded + " pets added.");
+    }
+    
     private static void showAllPets()
     {
-        //Displays every pet stored in ArrayList
+        //Displays all pets
         int rowCount = 0;
         printTableHeader();
+        //Loop through pet arraylist
         for (int i = 0; i < petCount; i++)
         {
             printTableRow(i, pets.get(i).getName(), pets.get(i).getAge());
@@ -79,7 +116,7 @@ public class ObermillerWeek1AssignmentFriday {
     
     private static void printTableRow(int id, String name, int age)
     {
-        //Prints a single row
+        //Prints a table row
         System.out.printf("|%3d", id);
         System.out.printf(" | %-10s", name);
         System.out.printf("|%4d |\n", age);
@@ -100,6 +137,9 @@ public class ObermillerWeek1AssignmentFriday {
         System.out.println("What would you like to do?");
         System.out.println(" 1) View all pets");
         System.out.println(" 2) Add new pets");
+        System.out.println(" 3) Remove a pet");
+        System.out.println(" 4) Search by age");
+        System.out.println(" 5) Search by name");
         System.out.println(" 6) Exit program");
         System.out.print("Your choice: ");
         
@@ -119,6 +159,7 @@ class Pet {
         age = a;
     }
     
+    //Getter and setter methods
     public String getName()
     {
         return name;
